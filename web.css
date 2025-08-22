@@ -144,3 +144,39 @@ footer {
     display: block;
   }
 }
+
+
+/* Projects Section */
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.project-card {
+  display: block;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
+  text-decoration: none;
+}
+
+.project-card h3 {
+  color: #00c4ff;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #d9e6f2;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 196, 255, 0.4);
+}
