@@ -31,7 +31,7 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="section">
+  <section id="about" class="section fade-in">
     <h2>About Me</h2>
     <p>
       I am currently a 3rd year MBBS student at Bankura Sammilani Medical College & Hospital, passionate about medical sciences and healthcare. My academic journey is driven by a strong interest in clinical practice, patient care, and medical research.
@@ -39,7 +39,7 @@
   </section>
 
   <!-- Work Section -->
-  <section id="work" class="section">
+  <section id="work" class="section fade-in">
     <h2>Work & Interests</h2>
     <p>
       As part of my MBBS curriculum, I am engaged in clinical postings, medical case studies, and academic projects. I am eager to explore opportunities for research and collaboration.
@@ -47,20 +47,20 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="section">
+  <section id="projects" class="section fade-in">
     <h2>Projects & Research</h2>
     <div class="project-list">
       <a href="project.pdf" target="_blank" class="project-card">
         <h3>Case Study: Community Medicine</h3>
-        <p>Analyzed and presented a case study related to the adverse effects of excessive use of digital devices in young adults </p>
+        <p>Analyzed and presented a case study related to the adverse effects of excessive use of digital devices in young adults</p>
       </a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section">
+  <section id="contact" class="section fade-in">
     <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:dr.aratrikachatterjee@email.com">dr.aratrikachatterjee@gmail.com</a></p>
+    <p>Email: <a href="mailto:dr.aratrikachatterjee@gmail.com">dr.aratrikachatterjee@gmail.com</a></p>
   </section>
 
   <!-- Footer -->
@@ -83,12 +83,21 @@
       navLinks.classList.toggle('show');
     });
 
-    // Show "Go to Top" button when scrolling
+    // Scroll events
     window.onscroll = function() {
+      // Go to Top button
       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         topBtn.style.display = "block";
       } else {
         topBtn.style.display = "none";
+      }
+
+      // Navbar shrink
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("shrink");
+      } else {
+        navbar.classList.remove("shrink");
       }
     };
 
@@ -96,33 +105,22 @@
     function topFunction() {
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
+
+    // Fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2 };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target); // animate once
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
   </script>
-  <script>
-  window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-      navbar.classList.add("shrink");
-    } else {
-      navbar.classList.remove("shrink");
-    }
-  });
-</script>
-  <script>
-  const goTopBtn = document.getElementById("goTopBtn");
-
-  window.addEventListener("scroll", function() {
-    if (window.scrollY > 200) {
-      goTopBtn.classList.add("show");
-    } else {
-      goTopBtn.classList.remove("show");
-    }
-  });
-
-  goTopBtn.addEventListener("click", function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-
-
 </body>
 </html>
