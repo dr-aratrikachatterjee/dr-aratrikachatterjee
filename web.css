@@ -5,7 +5,6 @@ body {
   color: #fff;
   background: url("background.png") no-repeat center center fixed;
   background-size: cover;
-  padding-top: 70px; /* prevent navbar overlap */
 }
 
 /* Navbar */
@@ -13,21 +12,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  position: fixed;
+  padding: 15px 40px;
+  background: rgba(0, 0, 50, 0.85);
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(0, 0, 50, 0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-}
-
-/* Shrunk Navbar */
-.navbar.shrink {
-  padding: 10px 40px;
-  background: rgba(0, 0, 70, 0.98);
+  z-index: 100;
 }
 
 .logo {
@@ -45,14 +34,11 @@ body {
 .nav-links li a {
   color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s, text-shadow 0.3s;
+  transition: color 0.3s;
 }
 
 .nav-links li a:hover {
   color: #00c4ff;
-  text-shadow: 0 0 5px rgba(0, 196, 255, 0.7),
-               0 0 10px rgba(0, 196, 255, 0.5);
 }
 
 /* Hamburger (hidden by default) */
@@ -78,19 +64,11 @@ body {
   font-size: 3rem;
   margin-top: 20px;
   margin-bottom: 10px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1.2s ease-out forwards;
-  animation-delay: 0.3s;
 }
 
 .hero-text p {
   font-size: 1.2rem;
   color: #d9e6f2;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1.2s ease-out forwards;
-  animation-delay: 0.6s;
 }
 
 /* Profile Picture */
@@ -107,18 +85,11 @@ body {
 .section {
   padding: 60px 20px;
   max-width: 900px;
-  margin: 40px auto;
+  margin: auto;
   text-align: center;
   background: rgba(0, 0, 30, 0.7);
+  margin-top: 40px;
   border-radius: 12px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.section.appear {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .section h2 {
@@ -130,6 +101,48 @@ body {
 .section p {
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+/* Contact links */
+#contact a {
+  color: #00c4ff;
+  text-decoration: none;
+}
+#contact a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 50, 0.85);
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: rgba(0, 0, 50, 0.95);
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    display: none;
+    width: 200px;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* Projects Section */
@@ -164,30 +177,85 @@ body {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0, 196, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 196, 255, 0.4);
 }
 
-/* Contact links */
-#contact a {
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar Hover Effect */
+.navbar a {
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.navbar a:hover {
   color: #00c4ff;
-  text-decoration: none;
-}
-#contact a:hover {
-  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 196, 255, 0.6);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 50, 0.85);
-  margin-top: 40px;
-  font-size: 0.9rem;
+/* Typing Effect in Hero */
+.typing-text {
+  border-right: 2px solid #00c4ff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(50, end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #00c4ff; }
+}
+
+/* Fade-in sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow effect on Project Card */
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 196, 255, 0.6);
 }
 
 /* Go to Top Button */
 #topBtn {
-  display: none;
+  display: none; /* hidden by default */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: #00c4ff;
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 196, 255, 0.5);
+  transition: background 0.3s, transform 0.2s;
+}
+
+#topBtn:hover {
+  background-color: #009ac7;
+  transform: scale(1.1);
+}
+
+/* Go to Top Button */
+#topBtn {
+  display: none; /* hidden by default */
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -210,41 +278,115 @@ footer {
   transform: scale(1.1);
 }
 
-/* Glow Animation */
+/* Pulsing Glow Animation */
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4); }
-  50% { box-shadow: 0 0 20px rgba(0, 196, 255, 0.9), 0 0 40px rgba(0, 196, 255, 0.7); }
-  100% { box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: rgba(0, 0, 50, 0.95);
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    display: none;
-    width: 200px;
-    border-radius: 8px 0 0 8px;
+  0% {
+    box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4);
   }
-
-  .nav-links.show {
-    display: flex;
+  50% {
+    box-shadow: 0 0 20px rgba(0, 196, 255, 0.9), 0 0 40px rgba(0, 196, 255, 0.7);
   }
-
-  .hamburger {
-    display: block;
+  100% {
+    box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4);
   }
 }
 
-/* Animations */
+/* Navbar Links */
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #00c4ff;
+  text-shadow: 0 0 5px rgba(0, 196, 255, 0.7),
+               0 0 10px rgba(0, 196, 255, 0.5);
+}
+
+/* Hero Section Animation */
+.hero h1, 
+.hero p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease-out forwards;
+}
+
+/* Delay for smooth staggered effect */
+.hero h1 {
+  animation-delay: 0.3s;
+}
+
+.hero p {
+  animation-delay: 0.6s;
+}
+
 @keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* Navbar Sticky */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 50, 0.95); /* dark blue with slight transparency */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Add spacing since navbar is fixed */
+body {
+  padding-top: 70px; /* adjust based on navbar height */
+}
+
+/* Normal Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 50, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  padding: 20px 0; /* normal height */
+}
+
+/* Shrunk Navbar */
+.navbar.shrink {
+  padding: 10px 0; /* reduced height */
+  background: rgba(0, 0, 70, 0.98); /* slightly darker */
+}
+
+#goTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+  background-color: #00c4ff;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  transition: opacity 0.4s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none; /* prevent clicking when hidden */
+}
+
+#goTopBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#goTopBtn:hover {
+  background-color: #008bb3;
+  transform: scale(1.1);
 }
