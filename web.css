@@ -1,148 +1,177 @@
-/* Reset & Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* General Styling */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #0a192f; /* dark blue background */
-  color: #f0f0f0;
-  scroll-behavior: smooth;
-  padding-top: 70px; /* prevent content hiding under sticky navbar */
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 70px; /* prevent navbar overlap */
 }
 
 /* Navbar */
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-  background: rgba(10, 25, 47, 0.95);
   z-index: 1000;
+  background: rgba(0, 0, 50, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
-  flex-wrap: nowrap;
 }
 
-.navbar .logo {
-  font-size: 1.2rem;
+/* Shrunk Navbar */
+.navbar.shrink {
+  padding: 10px 40px;
+  background: rgba(0, 0, 70, 0.98);
+}
+
+.logo {
+  font-size: 1.3rem;
   font-weight: bold;
-  color: white;
-  white-space: nowrap;
 }
 
+/* Links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 20px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;
 }
 
-.nav-links li {
-  display: inline-block;
-}
-
-.nav-links a {
-  color: white;
+.nav-links li a {
+  color: #fff;
   text-decoration: none;
-  padding: 8px 12px;
-  transition: background 0.3s;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-.nav-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+.nav-links li a:hover {
+  color: #00c4ff;
+  text-shadow: 0 0 5px rgba(0, 196, 255, 0.7),
+               0 0 10px rgba(0, 196, 255, 0.5);
 }
 
-/* Navbar shrink effect */
-.navbar.shrink {
-  padding: 8px 20px;
-  background: rgba(10, 25, 47, 0.98);
-}
-
-/* Hamburger */
+/* Hamburger (hidden by default) */
 .hamburger {
   display: none;
-  font-size: 1.8rem;
-  color: white;
+  font-size: 2rem;
   cursor: pointer;
+  color: #fff;
 }
 
 /* Hero Section */
 .hero {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
   text-align: center;
-  background: linear-gradient(to bottom right, #0a192f, #112240);
+  background: rgba(0, 0, 30, 0.7);
+  flex-direction: column;
 }
 
-.hero-text {
-  max-width: 600px;
+.hero-text h1 {
+  font-size: 3rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
+.hero-text p {
+  font-size: 1.2rem;
+  color: #d9e6f2;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* Profile Picture */
 .profile-pic {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  margin-bottom: 20px;
-  border: 3px solid #64ffda;
+  border: 4px solid #00c4ff;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0, 196, 255, 0.6);
 }
 
-/* Sections */
+/* Section Styling */
 .section {
   padding: 60px 20px;
   max-width: 900px;
-  margin: auto;
+  margin: 40px auto;
+  text-align: center;
+  background: rgba(0, 0, 30, 0.7);
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.section.appear {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section h2 {
-  text-align: center;
+  font-size: 2rem;
   margin-bottom: 20px;
-  color: #64ffda;
+  color: #00c4ff;
 }
 
-/* Project cards */
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Projects Section */
 .project-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 25px;
+  margin-top: 30px;
 }
 
 .project-card {
-  background: #112240;
+  display: block;
+  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
   text-decoration: none;
-  color: white;
-  transition: transform 0.3s, background 0.3s;
+}
+
+.project-card h3 {
+  color: #00c4ff;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #d9e6f2;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  background: #1c3453;
+  box-shadow: 0 0 25px rgba(0, 196, 255, 0.6);
 }
 
-.project-card h3 {
-  margin-bottom: 10px;
-  color: #64ffda;
-}
-
-/* Contact Section */
+/* Contact links */
 #contact a {
-  color: #64ffda;
+  color: #00c4ff;
   text-decoration: none;
 }
-
 #contact a:hover {
   text-decoration: underline;
 }
@@ -151,8 +180,8 @@ body {
 footer {
   text-align: center;
   padding: 20px;
-  background: #0d1b2a;
-  margin-top: 30px;
+  background: rgba(0, 0, 50, 0.85);
+  margin-top: 40px;
   font-size: 0.9rem;
 }
 
@@ -162,34 +191,45 @@ footer {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 100;
-  font-size: 22px;
+  z-index: 99;
+  font-size: 20px;
   border: none;
   outline: none;
-  background-color: #64ffda;
-  color: #0a192f;
+  background-color: #00c4ff;
+  color: white;
   cursor: pointer;
   padding: 12px 16px;
   border-radius: 50%;
-  transition: background 0.3s;
+  box-shadow: 0 0 15px rgba(0, 196, 255, 0.6);
+  transition: background 0.3s, transform 0.2s;
+  animation: pulseGlow 2s infinite;
 }
 
 #topBtn:hover {
-  background-color: #52e0c4;
+  background-color: #009ac7;
+  transform: scale(1.1);
+}
+
+/* Glow Animation */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(0, 196, 255, 0.9), 0 0 40px rgba(0, 196, 255, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(0, 196, 255, 0.6), 0 0 20px rgba(0, 196, 255, 0.4); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: rgba(10, 25, 47, 0.95);
     position: absolute;
-    top: 60px;
-    left: 0;
-    text-align: center;
-    padding: 15px 0;
+    top: 70px;
+    right: 0;
+    background: rgba(0, 0, 50, 0.95);
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    display: none;
+    width: 200px;
+    border-radius: 8px 0 0 8px;
   }
 
   .nav-links.show {
@@ -198,5 +238,13 @@ footer {
 
   .hamburger {
     display: block;
+  }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
