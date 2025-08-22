@@ -57,16 +57,28 @@ body {
   align-items: center;
   text-align: center;
   background: rgba(0, 0, 30, 0.7);
+  flex-direction: column;
 }
 
 .hero-text h1 {
   font-size: 3rem;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .hero-text p {
   font-size: 1.2rem;
   color: #d9e6f2;
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #00c4ff;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0, 196, 255, 0.6);
 }
 
 /* Section Styling */
