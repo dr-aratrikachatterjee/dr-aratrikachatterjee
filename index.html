@@ -26,12 +26,12 @@
     <div class="hero-text">
       <img src="profile.jpg" alt="Dr. Aratrika Chatterjee" class="profile-pic">
       <h1>Dr. Aratrika Chatterjee</h1>
-      <p class="typing-text">MBBS Student | Batch 2023–2028<br>Bankura Sammilani Medical College & Hospital</p>
+      <p>MBBS Student | Batch 2023–2028<br>Bankura Sammilani Medical College & Hospital</p>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="section fade-in">
+  <section id="about" class="section">
     <h2>About Me</h2>
     <p>
       I am currently a 3rd year MBBS student at Bankura Sammilani Medical College & Hospital, passionate about medical sciences and healthcare. My academic journey is driven by a strong interest in clinical practice, patient care, and medical research.
@@ -39,67 +39,63 @@
   </section>
 
   <!-- Work Section -->
-  <section id="work" class="section fade-in">
+  <section id="work" class="section">
     <h2>Work & Interests</h2>
     <p>
-      As part of my MBBS curriculum, I am engaged in clinical postings, medical case studies, and academic projects. I am eager to explore opportunities for research and collaboration.
+      As part of my MBBS curriculum, I am engaged in clinical postings, medical case studies, and academic projects. My interests include internal medicine, neurology, and public health. I am eager to explore opportunities for research and collaboration.
     </p>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="section fade-in">
+  <section id="projects" class="section">
     <h2>Projects & Research</h2>
     <div class="project-list">
-      <h3>Case Study: Community Medicine</h3>
       <a href="project.pdf" target="_blank" class="project-card">
-        
-        <p>Analyzed and presented a case study related to various disorders in young adults due to excessive usage of digital devices (Click to view full PDF)</p>
+        <h3>Case Study: Neurological Disorders</h3>
+        <p>Analyzed and presented a case study related to neurological conditions during clinical postings. (Click to view full PDF)</p>
       </a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section fade-in">
+  <section id="contact" class="section">
     <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:aratrika.chatterjee@email.com">dr.aratrikachatterjee@gmail.com</a></p>
+    <p>Email: <a href="mailto:aratrika.chatterjee@email.com">aratrika.chatterjee@email.com</a></p>
+    <p>LinkedIn: <a href="#">linkedin.com/in/aratrika-chatterjee</a></p>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Dr. Aratrika Chatterjee. All rights reserved.</p>
-    <p>Last updated 22nd of August, 2025</p>
   </footer>
+
+  <!-- Go to Top Button -->
+  <button onclick="topFunction()" id="topBtn" title="Go to top">↑</button>
 
   <!-- Script -->
   <script>
-    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+    const topBtn = document.getElementById("topBtn");
+
+    // Hamburger toggle
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('show');
     });
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
+    // Show "Go to Top" button when scrolling
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        topBtn.style.display = "block";
+      } else {
+        topBtn.style.display = "none";
+      }
+    };
 
-    // Fade-in effect on scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.2 };
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('appear');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
+    // Scroll to top
+    function topFunction() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
   </script>
 </body>
 </html>
