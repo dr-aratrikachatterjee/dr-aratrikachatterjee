@@ -15,6 +15,7 @@ body {
   color: #fff;
   background: url("background.png") no-repeat center center fixed;
   background-size: cover;
+  filter: brightness(1.15) contrast(1.1);
 }
 
 /* Navbar */
