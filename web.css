@@ -80,7 +80,7 @@ section {
   padding: 4rem 2rem;
   max-width: 900px;
   margin: 2rem auto;
-  background: rgba(19, 43, 95, 0.6);
+  background: rgba(19, 43, 95, 0.4);
   border-radius: 15px;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -328,7 +328,7 @@ footer {
   text-align: center;
   margin: 2rem auto;
   padding: 2rem 1rem;
-  background: rgba(19, 43, 95, 0.6);
+  background: rgba(19, 43, 95, 0.4);
   border-radius: 15px;
   max-width: 600px;
   backdrop-filter: blur(8px);
