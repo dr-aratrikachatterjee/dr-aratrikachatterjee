@@ -10,47 +10,53 @@ body {
 
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;   /* reduced padding so links fit */
-  background: rgba(0, 0, 50, 0.95);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 50, 0.95);
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  flex-wrap: wrap;      /* ✅ prevents overflow */
+  transition: all 0.3s ease;
 }
 
 .navbar.shrink {
-  padding: 8px 20px;    /* smaller padding when scrolled */
+  padding: 8px 16px;
   background: rgba(0, 0, 70, 0.98);
 }
 
 .logo {
   font-size: 1.2rem;
-  font-weight: bold;
-  flex-shrink: 0;       /* ✅ logo won’t shrink */
+  font-weight: 700;
+  /* prevent horizontal overflow on small screens */
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 15px;            /* reduced gap for better fit */
-  flex-wrap: wrap;      /* ✅ wrap links if needed */
+  gap: 16px;
   margin: 0;
   padding: 0;
+  /* don’t force a second row that breaks layout */
+  flex: 0 1 auto;
 }
 
 .nav-links li a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  white-space: nowrap;  /* ✅ keep each link in one line */
+  white-space: nowrap;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
@@ -65,21 +71,24 @@ body {
   font-size: 2rem;
   cursor: pointer;
   color: #fff;
+  flex: 0 0 auto;
 }
 
 /* Responsive Navbar */
-@media (max-width: 1024px) {   /* ✅ trigger hamburger earlier */
+@media (max-width: 1024px) {
+  /* turn links into a dropdown/side panel below the fixed navbar */
   .nav-links {
     position: absolute;
-    top: 70px;
+    top: 100%;          /* sit directly under the navbar height (handles shrink too) */
     right: 0;
-    background: rgba(0, 0, 50, 0.95);
+    display: none;      /* hidden until .show is toggled */
     flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    display: none;
-    width: 200px;
-    border-radius: 8px 0 0 8px;
+    gap: 12px;
+    padding: 16px;
+    width: min(320px, 90vw); /* always fit the viewport on phones */
+    background: rgba(0, 0, 50, 0.98);
+    border-radius: 12px 0 0 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
 
   .nav-links.show {
