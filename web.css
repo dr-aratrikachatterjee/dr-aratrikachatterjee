@@ -9,85 +9,61 @@ body {
 }
 
 /* Navbar */
-.navbar {
+header {
+  background: rgba(9, 21, 48, 0.9);
+  color: #fff;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+
+nav.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;   /* reduced padding so links fit */
-  background: rgba(0, 0, 50, 0.95);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  flex-wrap: wrap;      /* ✅ prevents overflow */
-}
-
-.navbar.shrink {
-  padding: 8px 20px;    /* smaller padding when scrolled */
-  background: rgba(0, 0, 70, 0.98);
 }
 
 .logo {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  flex-shrink: 0;       /* ✅ logo won’t shrink away */
 }
 
-/* Links */
+/* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 15px;            /* slightly reduced gap */
-  flex-wrap: wrap;      /* ✅ wrap links instead of overflowing */
+  gap: 1.5rem;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  white-space: nowrap;  /* ✅ keep each link on one line */
-  transition: color 0.3s, text-shadow 0.3s;
-}
-
-
-.nav-links li a:hover {
-  color: #00c4ff;
-  text-shadow: 0 0 5px rgba(0,196,255,0.7), 0 0 10px rgba(0,196,255,0.5);
-}
-
-/* Hamburger (hidden by default) */
-.hamburger {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
+.nav-links a {
   color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: rgba(0, 0, 50, 0.95);
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    display: none;
-    width: 200px;
-    border-radius: 8px 0 0 8px;
-  }
+.nav-links a:hover {
+  color: #00bcd4;
+}
 
-  .nav-links.show {
-    display: flex;
-  }
+/* Active nav link */
+.nav-links a.active {
+  color: #00bcd4;
+  font-weight: bold;
+  border-bottom: 2px solid #00bcd4;
+  padding-bottom: 2px;
+}
 
-  .hamburger {
-    display: block;
-  }
+/* Hamburger Button (hidden on desktop) */
+.menu-toggle {
+  display: none; /* only visible on mobile */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 /* Hero Section */
